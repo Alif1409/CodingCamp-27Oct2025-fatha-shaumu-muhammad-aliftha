@@ -13,32 +13,43 @@
 
     <!-- Content Header -->
     <header>
-        <h1 class="text-3xl font-bold">Your Todo List :D</h1>
+        <h1 class="text-3xl font-bold">✨ Your Todo List</h1>
+        <p class="text-sm mt-2 opacity-90">Organized your day!</p>
     </header>
 
     <!-- Main Content -->
     <main>
         <section>
             <form class="flex gap-4 mb-4">
-            <!-- Todo Input -->
-             <input class="border p-2 rounded" type ="text" id="todo-input" placeholder="Write your schedule here...">
-            
-            <!-- Due date input -->
-             <input class="border p-2 rounded" type="date" id="due-date" placeholder="Enter due date">
-        </form>
-
-        <button type="submit" class="border p-2 rounded bg-green-500 text-white" class="button" onclick="addTodo()" id="add-todo">Add schedule</button>
+                <!-- Todo Input -->
+                <input class="flex-1 border p-3 rounded-lg shadow-sm" type="text" id="todo-input" placeholder="Write your schedule here...">
+                
+                <!-- Due date input -->
+                <input class="border p-3 rounded-lg shadow-sm" type="date" id="due-date">
+                
+                <!-- Add button moved inside form for better layout -->
+                <button type="button" class="px-6 py-3 rounded-lg bg-green-500 text-white font-medium shadow-sm hover:bg-green-600 transition-colors" onclick="addTodo()" id="add-todo">
+                    Add Task
+                </button>
+            </form>
         </section>
 
-        <section class="flex justify-between my-4">
-            <button class="border p-2 rounded bg-red-500 text-white" id="clear-all">Clear all your schedule</button>
-            <button class="border p-2 rounded bg-blue-500" id="todos-filter">Filter your schedule</button>
+        <!-- Filter Section -->
+        <section class="flex flex-wrap justify-between items-center gap-4 my-6">
+            <button class="px-6 py-3 rounded-lg bg-red-500 text-white font-medium shadow-sm hover:bg-red-600 transition-colors flex items-center gap-2" onclick="deleteAllTodos()" id="clear-all">
+                <span>🗑️</span> Clear All
+            </button>
+            <div class="filter-buttons">
+                <button class="bg-blue-500 active" onclick="renderTodos('all')">All Tasks</button>
+                <button class="bg-yellow-500" onclick="renderTodos('active')">Active</button>
+                <button class="bg-green-500" onclick="renderTodos('completed')">Completed</button>
+            </div>
         </section>
 
         <!-- Todo List  -->
         <section>
-            <ul id="todo-list">
-                <li>No schedules available...</li>
+            <ul id="todo-list" class="todo-list">
+                <!-- Todo items will be inserted here -->
             </ul>
         </section>
 
@@ -46,7 +57,9 @@
 
     <!-- Content Footer -->
     <footer>
-        <p class = "border-p2 rounded bg-red-500 text-white padding p-2">Hope you remember your todo list :)</p>
+        <br/>
+        <br/>
+        <p class = "border-p2 rounded bg-red-500 text-white padding p-2">DON'T FORGET WITH YOUR TO-DO LIST! 😉</p>
     </footer>
 
     <script src="script/script.js"></script>
