@@ -2,7 +2,6 @@ let todos = [];
 
 function validateForm(todo, date) {
     if (todo.trim() === '' || date === '') {
-        alert('Please fill in all fields.');
         return false;
     }
     return true;
@@ -22,7 +21,7 @@ function addTodo() {
         todos.push({ task: todoInput, dueDate: todoDate });
 
         renderTodos();
-        
+
         console.log('Current Schedule: ', todos);
         alert('Schedule added successfully!');
 
@@ -51,7 +50,6 @@ function renderTodos() {
     todos.forEach((todo, index) => {
         todoList.innerHTML += `<li>
             <span>${todo.task} - Due: ${todo.dueDate}</span>
-            <button onclick="deleteTodo(${index})">Delete</button>
         </li>`;
     });
 }
