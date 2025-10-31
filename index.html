@@ -3,42 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Todo List</title>
 
     <link rel="stylesheet" href="style/style.css">
+
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
 
     <!-- Content Header -->
     <header>
-        <h1>Your Todo List :D</h1>
+        <h1 class="text-3xl font-bold">Your Todo List :D</h1>
     </header>
 
     <!-- Main Content -->
     <main>
         <section>
-            <form>
+            <form class="flex gap-4 mb-4">
             <!-- Todo Input -->
-             <input type ="text" id="Todo-input" placholder ="Write your schedule here...">
+             <input class="border p-2 rounded" type ="text" id="todo-input" placeholder="Write your schedule here...">
             
             <!-- Due date input -->
-             <input type="date" id="due-date" placeholder="Enter due date">
+             <input class="border p-2 rounded" type="date" id="due-date" placeholder="Enter due date">
         </form>
 
-        <button type="submit" id="add-todo">Add schedule</button>
+        <button type="submit" class="border p-2 rounded bg-green-500 text-white" class="button" onclick="addTodo()" id="add-todo">Add schedule</button>
         </section>
 
-        <section></section>
+        <section class="flex justify-between my-4">
+            <button class="border p-2 rounded bg-red-500 text-white" id="clear-all">Clear all your schedule</button>
+            <button class="border p-2 rounded bg-blue-500" id="todos-filter">Filter your schedule</button>
+        </section>
 
         <!-- Todo List  -->
         <section>
-            <ul id="todo-list"></ul>
+            <ul id="todo-list">
+                <li>No schedules available...</li>
+            </ul>
         </section>
 
     </main>
 
     <!-- Content Footer -->
-    <footer>Hope u can remember your todo list :)</footer>
+    <footer>
+        <p class = "border-p2 rounded bg-red-500 text-white padding p-2">Hope you remember your todo list :)</p>
+    </footer>
 
     <script src="script/script.js"></script>
 </body>
