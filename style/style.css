@@ -1,5 +1,5 @@
 body {
-    background-color: #f0f2f5;
+    background-color: #fce029;
     min-height: 100vh;
     margin: 0;
     font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
@@ -12,7 +12,7 @@ main {
 }
 
 header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #667eea 1%, #764ba2 100%);
     color: white;
     padding: 2rem;
     text-align: center;
@@ -150,7 +150,7 @@ input:focus {
 footer {
     text-align: center;
     padding: 2rem;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, #0a75bc 1%, #0a75bc 100%);
     margin-top: 3rem;
 }
 
