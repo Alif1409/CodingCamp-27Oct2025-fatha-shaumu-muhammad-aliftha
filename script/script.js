@@ -10,6 +10,7 @@ function validateForm(todo, date) {
 // Function to delete all todos
 function deleteAllTodos() {
     todos = [];
+    saveTodos();
     renderTodos();
     console.log('All schedules deleted');
 }
@@ -17,13 +18,16 @@ function deleteAllTodos() {
 // Function to delete a specific todo
 function deleteTodo(index) {
     todos.splice(index, 1);
+    saveTodos();
     renderTodos();
     console.log('Schedule deleted at index:', index);
 }
 
 // Function to toggle todo completion status
 function toggleTodoStatus(index) {
+    if (typeof todos[index] === 'undefined') return;
     todos[index].completed = !todos[index].completed;
+    saveTodos();
     renderTodos();
     console.log('Schedule status toggled at index:', index);
 }
@@ -67,12 +71,13 @@ function addTodo() {
 
         console.log('Schedule Added:', todoInput, 'Due date:', todoDate);
   
-        todos.push({ 
-            task: todoInput, 
+        todos.push({
+            task: todoInput,
             dueDate: todoDate,
-            completed: false 
+            completed: false
         });
 
+        saveTodos();
         renderTodos('all');
 
         console.log('Current Schedule: ', todos);
@@ -81,6 +86,34 @@ function addTodo() {
         // Clear input fields after adding
         document.getElementById('todo-input').value = '';
         document.getElementById('due-date').value = '';
+    }
+}
+
+// Save todos to localStorage
+function saveTodos() {
+    try {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    } catch (e) {
+        console.error('Failed to save todos to localStorage', e);
+    }
+}
+
+// Load todos from localStorage
+function loadTodos() {
+    try {
+        const raw = localStorage.getItem('todos');
+        if (!raw) return;
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+            // Ensure each todo has the expected properties and sane defaults
+            todos = parsed.map(t => ({
+                task: t.task || '',
+                dueDate: t.dueDate || '',
+                completed: !!t.completed
+            }));
+        }
+    } catch (e) {
+        console.error('Failed to load todos from localStorage', e);
     }
 }
 
@@ -98,3 +131,9 @@ function renderTodos(status = 'all') {
     // Call the filter function to update the display
     filterTodo(status);
 }
+
+// Load saved todos and render when the DOM is ready
+document.addEventListener('DOMContentLoaded', () => {
+    loadTodos();
+    renderTodos('all');
+});
